@@ -1,0 +1,37 @@
+
+<launch>
+
+    <!-- 1. 定义小乌龟运动参数 -->
+    <arg name="period" default="10.0"/>
+    <arg name="amplitude" default="2.0"/>
+    <arg name="publish_rate" default="20.0"/>
+
+    <!-- 2. 启动turtlesim仿真节点 -->
+    <node pkg="turtlesim"
+          type="turtlesim_node"
+          name="turtlesim"
+          output="screen"/>
+
+    <!-- 3. 启动圆周运动控制节点 -->
+    <node pkg="turtle_circle"
+          type="circle_controller.py"
+          name="circle_controller"
+          output="screen">
+
+        <!-- 设置节点私有参数 -->
+        <param name="period"
+               value="$(arg period)"
+               type="double"/>
+
+        <param name="amplitude"
+               value="$(arg amplitude)"
+               type="double"/>
+
+        <param name="publish_rate"
+               value="$(arg publish_rate)"
+               type="double"/>
+
+    </node>
+
+</launch>
+
