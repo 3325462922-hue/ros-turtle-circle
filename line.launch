@@ -1,0 +1,25 @@
+
+<launch>
+    <arg name="axis" default="x"/>
+    <arg name="target" default="8.0"/>
+
+    <node pkg="turtlesim"
+          type="turtlesim_node"
+          name="turtlesim"
+          output="screen"/>
+
+    <node pkg="turtle_circle"
+          type="line_controller.py"
+          name="line_controller"
+          output="screen">
+
+        <param name="axis" value="$(arg axis)"/>
+        <param name="target" value="$(arg target)"/>
+
+        <param name="linear_speed" value="1.0"/>
+        <param name="k_pos" value="0.8"/>
+        <param name="k_theta" value="3.0"/>
+        <param name="max_angular" value="2.0"/>
+    </node>
+</launch>
+
